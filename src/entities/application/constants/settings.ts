@@ -1,0 +1,1 @@
+export const SETTINGS_APPLICATION_ID = -1;

@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-pixelify-sans);
+  --font-mono: var(--font-pixelify-sans);
+
+  --color-background: #008080;
+  --color-background-window: #c0c0c0;
+  --color-secondary: #000080;
+}

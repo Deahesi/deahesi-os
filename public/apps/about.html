@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Обо мне — Владимир Ловцов</title>
+  <style>
+    :root { font: 13px Tahoma, "MS Sans Serif", Arial, sans-serif; color: #181818; background: #c0c0c0; }
+    * { box-sizing: border-box; }
+    html, body { width: 100%; height: 100%; margin: 0; }
+    body { overflow: hidden; }
+    .page { display: flex; flex-direction: column; gap: 12px; width: 100%; height: 100%; overflow: auto; padding: 14px; }
+    .hero, .panel, .stat { border: 2px solid; border-color: #808080 #fff #fff #808080; }
+    .hero { display: grid; grid-template-columns: 72px minmax(0, 1fr) auto; align-items: center; gap: 16px; padding: 16px; background: #f5f5f5; }
+    .avatar { display: grid; place-items: center; width: 68px; height: 68px; border: 2px solid #000080; background: #008080; color: #fff; font: bold 28px Georgia, serif; box-shadow: 3px 3px #c0c0c0; }
+    .eyebrow { margin: 0 0 5px; color: #555; font: 11px "Courier New", monospace; letter-spacing: .06em; text-transform: uppercase; }
+    h1 { margin: 0 0 5px; font-size: clamp(21px, 2.5vw, 29px); line-height: 1.1; }
+    .hero p:last-child { margin: 0; line-height: 1.45; }
+    .hero-mark { align-self: start; padding: 5px 8px; border: 1px solid #808080; background: #c0c0c0; color: #333; font: 11px "Courier New", monospace; white-space: nowrap; }
+    .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+    .stat { min-width: 0; padding: 9px 11px; background: #e8e8e8; }
+    .stat strong { display: block; color: #000080; font-size: 18px; line-height: 1.1; }
+    .stat span { display: block; margin-top: 4px; color: #444; font-size: 11px; }
+    .workspace { display: grid; grid-template-columns: minmax(245px, .85fr) minmax(0, 1.75fr); align-items: start; gap: 12px; }
+    .sidebar, .main-column { display: grid; gap: 12px; min-width: 0; }
+    .panel { min-width: 0; background: #f8f8f8; }
+    .panel h2 { margin: 0; padding: 8px 11px; border-bottom: 1px solid #808080; background: #e4e4e4; font-size: 14px; }
+    .panel h2::before { content: "▣"; margin-right: 7px; font-size: 11px; }
+    .panel-body { padding: 12px; line-height: 1.5; }
+    .panel-body p { margin: 0 0 9px; }
+    .panel-body p:last-child { margin-bottom: 0; }
+    .facts { display: grid; grid-template-columns: 84px minmax(0, 1fr); gap: 8px 10px; margin: 0; }
+    .facts dt { color: #666; }
+    .facts dd { min-width: 0; margin: 0; overflow-wrap: anywhere; }
+    .contact { font-family: "Courier New", monospace; font-size: 12px; }
+    .stack-group + .stack-group { margin-top: 12px; }
+    .stack-group h3 { margin: 0 0 7px; color: #555; font-size: 11px; font-weight: normal; text-transform: uppercase; letter-spacing: .06em; }
+    .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; list-style: none; }
+    .chips li { padding: 3px 7px; border: 2px solid; border-color: #fff #808080 #808080 #fff; background: #c0c0c0; white-space: nowrap; }
+    .intro strong { color: #000080; }
+    .jobs { display: grid; gap: 11px; }
+    .job { border-left: 3px solid #008080; padding-left: 11px; text-decoration: none; color: black }
+    .job-active:hover {
+      background-color: #00808030;
+    }
+    .job-heading { display: flex; align-items: baseline; justify-content: space-between; flex-wrap: wrap; gap: 3px 10px; margin-bottom: 4px; }
+    .job h3 { margin: 0; font-size: 14px; }
+    .job time { color: #555; font: 11px "Courier New", monospace; white-space: nowrap; }
+    .job p { margin: 0; }
+    .job p + p { margin-top: 5px; }
+    .muted { color: #00000050 }
+    .status { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 4px 12px; margin-top: auto; padding: 5px 8px; border: 1px solid; border-color: #808080 #fff #fff #808080; color: #333; font: 11px "Courier New", monospace; }
+    @media (max-width: 720px) {
+      .workspace { grid-template-columns: 1fr; }
+      .sidebar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .sidebar .panel:first-child { grid-column: 1 / -1; }
+    }
+    @media (max-width: 540px) {
+      .page { padding: 9px; gap: 9px; }
+      .hero { grid-template-columns: 54px minmax(0, 1fr); gap: 11px; padding: 11px; }
+      .avatar { width: 52px; height: 52px; font-size: 22px; }
+      .hero-mark { display: none; }
+      .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+      .sidebar { grid-template-columns: 1fr; gap: 9px; }
+      .sidebar .panel:first-child { grid-column: auto; }
+      .workspace, .main-column { gap: 9px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header class="hero">
+      <div class="avatar" aria-hidden="true">ВЛ</div>
+      <div>
+        <h1>Владимир Ловцов</h1>
+        <p>React · TypeScript · сложные интерфейсы для B2B, adtech и e-commerce</p>
+      </div>
+    </header>
+
+    <div class="workspace">
+      <aside class="sidebar" aria-label="Сведения и навыки">
+        <section class="panel" aria-labelledby="facts-heading">
+          <h2 id="facts-heading">Общая информация</h2>
+          <div class="panel-body">
+            <dl class="facts">
+              <dt>Имя</dt><dd>Владимир Игоревич Ловцов</dd>
+              <dt>Город</dt><dd>Бердск, Россия</dd>
+              <dt>Работа</dt><dd>Frontend Developer</dd>
+              <dt>Формат</dt><dd>Удалённо</dd>
+              <dt>Английский</dt><dd>B2</dd>
+              <dt>Telegram</dt><dd class="contact">@Deahesi</dd>
+              <dt>Почта</dt><dd class="contact">vladimir006154@gmail.com</dd>
+            </dl>
+          </div>
+        </section>
+
+        <section class="panel" aria-labelledby="stack-heading">
+          <h2 id="stack-heading">Технический стек</h2>
+          <div class="panel-body">
+            <div class="stack-group">
+              <h3>Frontend</h3>
+              <ul class="chips">
+                <li>React</li>
+                <li>Next.js</li>
+                <li>Vue</li>
+                <li>TypeScript</li>
+                <li>JavaScript</li>
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>SSR</li>
+                <li>Vitest</li>
+                <li>React Testing Library</li>
+              </ul>
+            </div>
+            <div class="stack-group">
+              <h3>Интерфейсы и данные</h3>
+              <ul class="chips">
+                <li>Shadcn/ui</li>
+                <li>MUI</li>
+                <li>Tailwind</li>
+                <li>TanStack Query</li>
+                <li>Zustand</li>
+                <li>React Router</li>
+                <li>Websockets</li>
+                <li>REST API</li>
+              </ul>
+            </div>
+            <div class="stack-group">
+              <h3>Backend</h3>
+              <ul class="chips">
+                <li>Node.js / NestJS</li>
+                <li>Golang</li>
+                <li>PostgreSQL</li>
+                <li>RabbitMQ</li>
+              </ul>
+            </div>
+            <div class="stack-group">
+              <h3>Дополнительно</h3>
+              <ul class="chips">
+                <li>Git</li>
+                <li>Linux</li>
+                <li>Nginx</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel" aria-labelledby="education-heading">
+          <h2 id="education-heading">Образование</h2>
+          <div class="panel-body">НГУ · ФИТ · Программная инженерия. Неоконченное высшее образование.</div>
+        </section>
+      </aside>
+
+      <div class="main-column">
+        <section class="panel intro" aria-labelledby="about-heading">
+          <h2 id="about-heading">Обо мне</h2>
+          <div class="panel-body">
+            <p><strong>Разрабатываю веб-приложения с 2021 года.</strong> Работал над B2B, рекламными и e-commerce продуктами: от data-heavy таблиц и редакторов контента до оформления заказов, разграничения прав и SSR.</p>
+            <p>Перестраивал архитектуру legacy-приложений, самостоятельно вёл frontend-направление, проводил code review и помогал новым разработчикам войти в проект.</p>
+          </div>
+        </section>
+
+        <section class="panel" aria-labelledby="experience-heading">
+          <h2 id="experience-heading">Опыт работы</h2>
+          <div class="panel-body jobs">
+            <a href="https://optchaibez.ru" target="_blank" class="job job-active">
+              <div class="job-heading"><h3>Чай без церемоний · Frontend-разработчик</h3><time>06.2025 — сейчас</time></div>
+              <p>Внутренняя контентная админ-панель для 10+ типов сущностей с RBAC на 6 ролей; система управления SEO для 225+ страниц двух каталогов.</p>
+              <p>Drag-and-drop редактор главной страницы для desktop и mobile. Переработал legacy-архитектуру по FSD, внедрил TanStack Query и SSR.</p>
+            </a>
+            <article class="job">
+              <div class="job-heading"><h3>Tractikum · Frontend-разработчик</h3><time>03.2023 — 04.2025</time></div>
+              <p>Развивал платформу до 30+ экранов: таблицы с серверной фильтрацией и настройкой колонок, конструктор аналитических метрик, редактор лендингов.</p>
+              <p>Реализовал multi-workspace и гранулярные права доступа; создал систему UI-компонентов и локализацию для 30+ экранов.</p>
+              <p class="muted">(К сожалению, сервис закрылся)</p>
+            </article>
+            <article class="job">
+              <div class="job-heading"><h3>Фриланс · Frontend-разработчик</h3><time>10.2022 — 03.2023</time></div>
+              <p>Клиентские приложения на JavaScript и TypeScript, адаптивные интерфейсы и API-интеграции; корпоративный сайт <a target="_blank" href="https://finegri.com">Finegri</a>.</p>
+            </article>
+            <article class="job">
+              <div class="job-heading"><h3>Dimtiks · Fullstack-разработчик</h3><time>04.2021 — 09.2022</time></div>
+              <p>Сервисы на Nuxt.js, NestJS и PostgreSQL, Web3-интеграции и смарт-контракты; deployment на Ubuntu и Nginx, code review.</p>
+              <p class="muted">(К сожалению, сервис закрылся)</p>
+            </article>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
